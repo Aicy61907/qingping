@@ -18,7 +18,10 @@ jobs:
       - name: Build
         working-directory: qingping
         run: gradle assembleDebug --stacktrace
+      - name: List APK
+        run: find . -name "*.apk"
       - uses: actions/upload-artifact@v4
         with:
           name: qingping-debug-apk
-          path: qingping/app/build/outputs/apk/debug/app-
+          path: "**/*.apk"
+          if-no-files-found: error
